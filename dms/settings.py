@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'authentication.apps.AuthenticationConfig',
+    'rest_framework',
+    'rest_auth',
+    'rest_framework.authtoken',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -66,6 +73,18 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'api.serializers.CustomRegistrationSerializer',
+}
+
+ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
 
 WSGI_APPLICATION = 'dms.wsgi.application'
 
