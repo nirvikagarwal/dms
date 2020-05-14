@@ -14,4 +14,9 @@ requests==2.23.0
 requests-oauthlib==1.3.0
 six==1.14.0
 sqlparse==0.3.1
+<<<<<<< HEAD
 urllib3==1.25.9
+=======
+djangorestframework-jwt
+django-cors-headers
+>>>>>>> 74572d6e0f6211d839645d3287d456bc6a1e92ad
