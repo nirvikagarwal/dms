@@ -74,17 +74,8 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
 
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'api.serializers.CustomRegistrationSerializer',
-}
 
-ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
 
 WSGI_APPLICATION = 'dms.wsgi.application'
 
@@ -117,18 +108,40 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+#authentication part
+
+ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
+
+
+
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )
 REST_FRAMEWORK = {
-     'DEFAULT_PERMISSION_CLASSES': [
+    #new
+
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+
+    'DEFAULT_PERMISSION_CLASSES': [
          'rest_framework.permissions.IsAuthenticated',
          'rest_framework.permissions.IsAdminUser',
-         ],
+    ],
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
-     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-     )
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  #edited
+
+    )
 }
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'api.serializers.CustomRegistrationSerializer',
+}
+
+
 from datetime import timedelta
 JWT_AUTH = {
   'JWT_ENCODE_HANDLER':
@@ -158,6 +171,8 @@ JWT_AUTH = {
   'JWT_AUTH_HEADER_PREFIX': 'Bearer',
   'JWT_AUTH_COOKIE': None,
 }
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
