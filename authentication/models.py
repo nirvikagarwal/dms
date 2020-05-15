@@ -44,12 +44,21 @@ class CustomUser(AbstractUser):
         ('C', 'Clinic'),
        
     )
-    role = models.CharField(max_length=1, choices=CHOICES)
+    role = models.CharField(max_length=1, choices=CHOICES)  
+    #new        
+    age = models.IntegerField(default= 0)   
+    phone = models.CharField(max_length=12)
 
 class Hospital(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, related_name="hospital_account"
     )
+    #new
+    name = models.CharField(max_length=100,default='')
+    registration_no = models.CharField(max_length=100)
+    address = models.CharField(max_length=200,default='')
+    phone = models.CharField(max_length=12,default='')
+    beds = models.IntegerField()
 
 
 class Clinic(models.Model):
@@ -57,3 +66,8 @@ class Clinic(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, related_name="clinic_account"
     )
+    #new
+    name = models.CharField(max_length=100,default='')
+    registration_no = models.CharField(max_length=100,default='')
+    address = models.CharField(max_length=200,default='')
+    phone = models.CharField(max_length=12,default='')
