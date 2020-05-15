@@ -57,7 +57,7 @@ class Hospital(models.Model):
     name = models.CharField(max_length=100,default='')
     registration_no = models.CharField(max_length=100, default = "")
     address = models.CharField(max_length=200,default='')
-    phone = models.CharField(max_length=12,default='')
+    phone = models.CharField(max_length=13,default='')
     beds = models.IntegerField(default = 0)
 
 
@@ -70,4 +70,4 @@ class Clinic(models.Model):
     name = models.CharField(max_length=100,default='')
     registration_no = models.CharField(max_length=100,default='')
     address = models.CharField(max_length=200,default='')
-    phone = models.CharField(max_length=12,default='')
+    phone = models.CharField(max_length=13,default='')
