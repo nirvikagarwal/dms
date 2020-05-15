@@ -47,7 +47,7 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=1, choices=CHOICES)  
     #new        
     age = models.IntegerField(default= 0)   
-    phone = models.CharField(max_length=12)
+    phone = models.CharField(max_length=12, default = "")
 
 class Hospital(models.Model):
     user = models.OneToOneField(
@@ -55,10 +55,10 @@ class Hospital(models.Model):
     )
     #new
     name = models.CharField(max_length=100,default='')
-    registration_no = models.CharField(max_length=100)
+    registration_no = models.CharField(max_length=100, default = "")
     address = models.CharField(max_length=200,default='')
     phone = models.CharField(max_length=12,default='')
-    beds = models.IntegerField()
+    beds = models.IntegerField(default = 0)
 
 
 class Clinic(models.Model):
