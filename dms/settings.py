@@ -34,12 +34,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'authentication.apps.AuthenticationConfig',
     'rest_framework',
     'rest_auth',
     'rest_framework.authtoken',
-    
+    'authentication'
 
 ]
 
@@ -111,8 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
 
-
-
+AUTH_USER_MODEL='authentication.CustomUser'
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )
