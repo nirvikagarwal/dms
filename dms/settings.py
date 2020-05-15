@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -37,10 +38,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_auth',
     'rest_framework.authtoken',
-    'authentication'
-
+    'authentication',
+    'api',
+    'allauth',
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -107,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #authentication part
 
-ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
+#ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
 
 AUTH_USER_MODEL='authentication.CustomUser'
 AUTHENTICATION_BACKENDS = (
@@ -126,14 +128,11 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  #edited
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',  #edited
 
     )
 }
 
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'api.serializers.CustomRegistrationSerializer',
-}
 
 
 from datetime import timedelta
@@ -186,3 +185,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CORS_ORIGIN_ALLOW_ALL= True
